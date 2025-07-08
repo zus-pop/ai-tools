@@ -1,0 +1,1 @@
+from .image_classification_router import router as image_classification_router
