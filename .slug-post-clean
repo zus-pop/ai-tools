@@ -1,9 +1,12 @@
-.venv
-*.h5
+**/__pycache__/
+.venv/
+logs/
+*.log
+*.pyc
 *.pkl
+*.h5
 *.pt
-__pycache__/
-data/
-models/
+*.onnx
 checkpoints/
+tmp/
 logs/
