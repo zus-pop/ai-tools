@@ -1,12 +1,3 @@
-**/__pycache__/
-.venv/
-logs/
-*.log
-*.pyc
-*.pkl
-*.h5
-*.pt
-*.onnx
-checkpoints/
-tmp/
-logs/
+app
+.venv
+logs
