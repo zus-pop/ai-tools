@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from .routers import image_classification_router
-from .logging_config import setup_logging
+from .config import setup_logging
 setup_logging("DEBUG")  # Set the desired log level here, e.g., "DEBUG
 
 app = FastAPI(
