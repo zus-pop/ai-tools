@@ -3,13 +3,30 @@ FROM python:3.11-slim
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
+# Create a non-root user
+RUN groupadd --gid 1000 zus && \
+    useradd --uid 1000 --gid zus --shell /bin/bash --create-home zus
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create app directory and set ownership
+RUN mkdir -p /app && chown -R zus:zus /app    
+
 # Copy the application into the container
-COPY . /app
+COPY --chown=zus:zus . /app
+
+# Switch to non-root user
+USER zus
 
 # Instal the application dependencies
 WORKDIR /app
 ENV UV_COMPILE_BYTECODE=1
-RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+
 RUN uv sync --frozen --no-cache --compile-bytecode
 
 # Run the application
