@@ -13,4 +13,5 @@ RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 RUN uv sync --frozen --no-cache --compile-bytecode
 
 # Run the application
-CMD ["/app/.venv/bin/fastapi", "run", "app/main.py", "--port", "80", "--host", "0.0.0.0"]
+CMD ["/app/.venv/bin/uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+# CMD ["/app/.venv/bin/fastapi", "run", "app/main.py", "--port", "80", "--host", "0.0.0.0"]
