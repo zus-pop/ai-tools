@@ -8,6 +8,7 @@ COPY . /app
 
 # Instal the application dependencies
 WORKDIR /app
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 RUN uv sync --frozen --no-cache
 
 # Run the application
